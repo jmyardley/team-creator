@@ -153,8 +153,11 @@ function newEngineer() {
 }
 
 function teamFull(){
-    console.log(team);
-}
+    if(!fs.existsSync(OUTPUT_DIR)){
+        fs.mkdirSync(OUTPUT_DIR)
+    }
+    fs.writeFileSync(outputPath, render(team), "utf8");
+};
 
 newEmployee();
 // Write code to use inquirer to gather information about the development team members,
