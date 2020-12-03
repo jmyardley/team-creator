@@ -10,7 +10,140 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+function newEmployee() {
+    inquirer.prompt([
+        {
+            type: "list",
+            message: "Enter new employee type: ",
+            name: "type",
+            choices: ["Manager", "Intern", "Engineer"]
+        },
+    ]).then((response) => {
+        if (response.type === "Manager") {
+            newManager();
+        }
+        if (response.type === "Intern") {
+            newIntern();
+        }
+        if (response.type === "Engineer") {
+            newEngineer();
+        }
+    });
+}
+function newManager() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "Enter employee name: ",
+            name: "name",
+        },
+        {
+            type: "input",
+            message: "Enter employee ID: ",
+            name: "id",
+        },
+        {
+            type: "input",
+            message: "Enter employee email: ",
+            name: "email",
+        },
+        {
+            type: "input",
+            message: "Enter employee office number: ",
+            name: "officeNumber",
+        },
+        {
+            type: "list",
+            message: "Add another employee? ",
+            name: "another",
+            choices: ["Yes", "No"]
+        },
 
+    ]).then((response) => {
+        if (response.another === "No") {
+            return;
+        } else {
+            newEmployee();
+        }
+    });
+}
+
+function newIntern() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "Enter employee name: ",
+            name: "name",
+        },
+        {
+            type: "input",
+            message: "Enter employee ID: ",
+            name: "id",
+        },
+        {
+            type: "input",
+            message: "Enter employee email: ",
+            name: "email",
+        },
+        {
+            type: "input",
+            message: "Enter employee's current school': ",
+            name: "school",
+        },
+        {
+            type: "list",
+            message: "Add another employee? ",
+            name: "another",
+            choices: ["Yes", "No"]
+        },
+
+    ]).then((response) => {
+        if (response.another === "No") {
+            return;
+        } else {
+            newEmployee();
+        }
+    });
+}
+function newEngineer() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "Enter employee name: ",
+            name: "name",
+        },
+        {
+            type: "input",
+            message: "Enter employee ID: ",
+            name: "id",
+        },
+        {
+            type: "input",
+            message: "Enter employee email: ",
+            name: "email",
+        },
+        {
+            type: "input",
+            message: "Enter employee github: ",
+            name: "github",
+        },
+        {
+            type: "list",
+            message: "Add another employee? ",
+            name: "another",
+            choices: ["Yes", "No"]
+        },
+
+    ]).then((response) => {
+        if (response.another === "No") {
+            return;
+        } else {
+            newEmployee();
+        }
+    });
+}
+
+newEmployee();
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
