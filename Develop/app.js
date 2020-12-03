@@ -10,6 +10,8 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const team = [];
+
 function newEmployee() {
     inquirer.prompt([
         {
@@ -60,8 +62,10 @@ function newManager() {
         },
 
     ]).then((response) => {
+        const mgr = new Manager(response.name, response.id, response.email, response.officeNumber);
+        team.push(mgr);
         if (response.another === "No") {
-            return;
+            teamFull();
         } else {
             newEmployee();
         }
@@ -98,8 +102,10 @@ function newIntern() {
         },
 
     ]).then((response) => {
+        const itrn = new Intern(response.name, response.id, response.email, response.school);
+        team.push(itrn);
         if (response.another === "No") {
-            return;
+            teamFull();
         } else {
             newEmployee();
         }
@@ -135,12 +141,19 @@ function newEngineer() {
         },
 
     ]).then((response) => {
+        const egr = new Engineer(response.name, response.id, response.email, response.github);
+        team.push(egr);
+
         if (response.another === "No") {
-            return;
+            teamFull();
         } else {
             newEmployee();
         }
     });
+}
+
+function teamFull(){
+    console.log(team);
 }
 
 newEmployee();
